@@ -37,5 +37,13 @@ func GetAllCustomers(w http.ResponseWriter, r *http.Request) {
 
 func GetCustomer(w http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
-	fmt.Fprint(w, "Customer: ", vars["id"])
+	fmt.Fprint(w, "Customer: ", vars["customer_id"])
+}
+
+func createCustomer(w http.ResponseWriter, r *http.Request) {
+	var customer Customer
+	json.NewDecoder(r.Body).Decode(&customer)
+	fmt.Println(customer)
+	json.NewEncoder(w).Encode(customer)
+
 }
